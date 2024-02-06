@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Token Generator</title>
+	</head>
+	<body>
+		<h1>Token Generator</h1>
+
+		<button onclick="generateToken()">Generate Token</button>
+		<button onclick="readToken()">Read Token</button>
+
+		<script>
+			function generateToken() {
+				fetch('/generate-token')
+					.then((response) => response.json())
+					.then((data) => {
+						alert('Token generated: ' + data.token);
+					})
+					.catch((error) => {
+						console.error('Error generating token:', error);
+					});
+			}
+
+			function readToken() {
+				fetch('/read-token')
+					.then((response) => response.json())
+					.then((data) => {
+						alert('Token read: ' + data.token);
+					})
+					.catch((error) => {
+						console.error('Error reading token:', error);
+					});
+			}
+		</script>
+	</body>
+</html>
