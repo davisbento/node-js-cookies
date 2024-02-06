@@ -12,19 +12,19 @@ app.get('/', (req, res) => {
 // Endpoint to generate a random cookie token
 app.get('/generate-token', (req, res) => {
 	const token = Math.random().toString(36).substring(2);
-	console.log('token: ', token);
+	console.log('token gerado: ', token);
 	res.cookie('token', token);
-	res.send('Token generated successfully!');
+	res.json({ token });
 });
 
 // Endpoint to read the token
 app.get('/read-token', (req, res) => {
 	const token = req.cookies.token;
-	console.log('token: ', token);
+	console.log('token lido: ', token);
 	if (token) {
-		res.send(`Token: ${token}`);
+		res.json({ token });
 	} else {
-		res.send('Token not found!');
+		res.json({ message: 'Token not found' });
 	}
 });
 
