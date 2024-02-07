@@ -13,7 +13,9 @@ app.get('/', (req, res) => {
 app.get('/generate-token', (req, res) => {
 	const token = Math.random().toString(36).substring(2);
 	console.log('token gerado: ', token);
-	res.cookie('token', token);
+	res.cookie('token', token, {
+		httpOnly: true
+	});
 	res.json({ token });
 });
 
@@ -29,6 +31,6 @@ app.get('/read-token', (req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-	console.log('Server started on port 3000');
+app.listen(4000, () => {
+	console.log('Server started on port 4000');
 });
